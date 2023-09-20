@@ -5,7 +5,9 @@ export const Filter = ({filter, onSearch}) => {
             <input
                 type="text"
                 value={filter}
-                onChange={onSearch}
+                onChange={evt => {
+          onSearch(evt.target.value);
+        }}
       />
         </div>
     );

@@ -1,93 +1,15 @@
-import { useEffect, useState } from "react";
-import { ContactForm } from "./ContactForm/ContactForm";
-import { ContactList } from "./ContactList/ContactList";
-import { Filter } from "./Filter";
-
-export const App = () => {
-
-  const [contacts, setContacts] = useState(() => {
-    const savedNames = localStorage.getItem('contact');
-    return savedNames ? JSON.parse(savedNames) : [];
-  })
-  const [filter, setFilter] = useState('');
-
-
-useEffect(() => {
-  localStorage.setItem('contact', JSON.stringify(contacts));
-}, [contacts])
-
-const addContacts = newContact => {
-  if (contacts.some(
-    contact => contact.name === newContact.name)) {
-    alert(`${newContact.name} is already in contacts.`);
-    return;
-  }
-  setContacts(prevContacts => [...prevContacts,newContact]);
-};
-
-const deleteContact = contactId => {
-  setContacts(prevContacts => 
-    prevContacts.filter(contact => contact.id !== contactId))
-};
-
-
-  const filterContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
-  };
-
-  const findContact = nameToFind => {
-    setFilter(nameToFind);
-  };
-
-  return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm onAdd={addContacts}></ContactForm>
-      <h2>Contacts</h2>
-      <Filter filter={filter} onSearch={findContact}></Filter>
-      <ContactList list={filterContacts()} onDelete={deleteContact}></ContactList>
-      </div>
-  )
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// import { Component } from "react";
+// //import { Formik } from 'formik';
+// import { ContactForm } from "./ContactForm/ContactForm";
+// import { nanoid } from "nanoid";
+// import { ContactList } from "./ContactList/ContactList";
+// import { Filter } from "./Filter";
 
 // export class App extends Component {
-//   state = {
-//     contacts: [],
-//     filter: ''
-//   }
+// //   state = {
+// //     contacts: [],
+// //     filter: ''
+// //   }
 
 //   componentDidMount() {
 //     const savedContact = localStorage.getItem('contact');
@@ -127,9 +49,9 @@ const deleteContact = contactId => {
 //     }));
 //   };
 
-//   // findContact = nameToFind => {
-//   //   this.setState({ filter: nameToFind });
-//   // };
+  // findContact = nameToFind => {
+  //   this.setState({ filter: nameToFind });
+  // };
 //   findContact = nameToFind => {
 //     this.setState({ filter: nameToFind.currentTarget.value });
 //   };
